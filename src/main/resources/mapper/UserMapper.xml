@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ssm.mapper.UserMapper">
+
+	<sql id="USERINFO_COLUMN_LIST">
+		ID,USERNAME,PASSWORD
+	</sql>
+
+	<select id="getAllUser" resultType="com.ssm.pojo.User">
+		SELECT <include refid="USERINFO_COLUMN_LIST"></include> FROM USERINFO
+	</select>
+	<delete id="deleUser">
+		DELETE FROM USERINFO WHERE ID = #{ID}
+	</delete>
+	<insert id="insertUser">
+		INSERT INTO USERINFO(USERNAME,PASSWORD) VALUES (#{username},#{password})
+	</insert>
+	<select id="getOneUser" resultType="com.ssm.pojo.User">
+		SELECT * FROM USERINFO WHERE ID =#{id}
+	</select>
+	<update id="updateUser">
+		UPDATE USERINFO SET USERNAME=#{username},PASSWORD=#{password} WHERE ID = #{id}
+	</update>
+	<select id="getCountUser" resultType="Integer"
+		parameterType="java.lang.String">
+		SELECT COUNT(*) FROM USERINFO WHERE USERNAME LIKE '%${username}%'
+	</select>
+	<select id="getLists" resultType="com.ssm.pojo.User">
+		SELECT
+		<include refid="USERINFO_COLUMN_LIST"></include>
+		FROM USERINFO WHERE USERNAME LIKE '%${username}%'
+		<if test="firstLine != null and pageSize !=null">
+			LIMIT #{firstLine},#{pageSize}
+		</if>
+	</select>
+	
+</mapper>

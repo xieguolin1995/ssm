@@ -1,0 +1,18 @@
+@charset "UTF-8";
+
+.nav>li:hover .dropdown-menu {
+	display: block;
+}
+
+#favicon {
+	height: 22px;
+	width: 22px;
+}
+
+body {
+	padding-top: 70px;
+	color: #20B2AA;
+	font-weight: 500;
+	font-size: 1.05em;
+	font-family: "Microsoft YaHei","Segoe UI", "Lucida Grande", Helvetica, Arial,sans-serif;
+}
