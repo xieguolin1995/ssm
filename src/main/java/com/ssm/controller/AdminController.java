@@ -1,9 +1,7 @@
 package com.ssm.controller;
 
 import java.io.IOException;
-
 import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -42,5 +40,22 @@ public class AdminController {
 			session.setAttribute("user", user.getAdminname());
 			return Msg.success().add("msg", "登陆成功!");
 		}
+	}
+	
+	/**
+	 *  如果session 为空就跳转到登录页面
+	 * @return
+	 */
+	@RequestMapping(value="/sessionLogin",method=RequestMethod.GET)
+	public String loginSession(HttpSession session) {
+		
+		return "/admin/login";
+	}
+	@RequestMapping(value="/logout")
+	public String Logout(HttpSession session) {
+		// 清除session
+		session.invalidate();
+		// 重定向 到登录页面
+		return "/admin/login";
 	}
 }

@@ -2,13 +2,13 @@ package com.ssm.controller;
 
 import java.util.List;
 
+import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.ssm.pojo.Catgory;
 import com.ssm.service.CatgoryService;
@@ -39,6 +39,7 @@ public class CatgoryContoller {
 	 * @param model
 	 * @return
 	 */
+	
 	@RequestMapping(value="/getCatgory",method=RequestMethod.GET)
 	public String getCatgory(Model model) {
 		List<Catgory> list = service.getCatgory();
@@ -79,11 +80,6 @@ public class CatgoryContoller {
 		return "redirect:/getCatgory";
 	}
 }
-
-
-
-
-
 
 
 

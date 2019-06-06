@@ -31,8 +31,8 @@ public class IdUtils{
 	 * 生成 分类id
 	 * @return
 	 */
-	public static String catgoryIdUtil() {
-		return UUID.randomUUID().toString().substring(0, 8);
+	public static String MyUUIDUtils() {
+		return UUID.randomUUID().toString().replace("-", "");
 	}
 	
 }

@@ -78,7 +78,7 @@ body{
 							$.hulla.send(result.extend.msg, "danger");
 						}, 1000);
 					}else{
-						window.location.href="main.jsp"; 
+						   window.location.href="main.jsp";
 						/* window.location.replace("main.jsp");  */ 
 					}
 				}

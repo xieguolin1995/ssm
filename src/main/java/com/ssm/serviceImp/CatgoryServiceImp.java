@@ -23,7 +23,7 @@ public class CatgoryServiceImp implements CatgoryService{
 	public void addCatgory(Catgory cg) {
 		Catgory catgory = new Catgory();
 		catgory.setCname(cg.getCname());
-		catgory.setCid(IdUtils.catgoryIdUtil());
+		catgory.setCid(IdUtils.MyUUIDUtils());
 		mapper.addCatgory(catgory);
 	}
 

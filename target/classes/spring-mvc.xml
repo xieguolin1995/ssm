@@ -17,9 +17,27 @@
 		<property name="prefix" value="/views"></property>
 		<property name="suffix" value=".jsp"></property>
 	</bean>
-	
-	<mvc:default-servlet-handler/>
+
+	<mvc:default-servlet-handler />
 	<mvc:annotation-driven></mvc:annotation-driven>
 	<!-- 文件上传解析器 -->
+	<!-- 上传图片配置实现类 Id 必须为multipartResolver -->
+	<bean id="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<!-- 设置默认编码 -->
+		<property name="defaultEncoding" value="utf-8"></property>
+		<!-- 上传图片的大小 B 5M 1*1024*1024*5 -->
+		<property name="maxUploadSize" value="5000000" />
+	</bean>
+	
 
+	<!-- 登录拦截器 -->
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/**"/>
+			<mvc:exclude-mapping path="/admin/login"/>    <!-- 不起作用-->
+			<bean class="com.ssm.interceptor.AdminInterceptor"></bean>
+		</mvc:interceptor>
+	</mvc:interceptors>
+	
 </beans>         

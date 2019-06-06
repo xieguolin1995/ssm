@@ -81,20 +81,9 @@ public class UserController {
 			System.out.println(page.toString());
 			return "/allUser";
 		}else {
-			return "redirect:/adminlogin";
+			return "redirect:/sessionLogin";
 		}
 	}
-	/**
-	 *  如果session 为空就跳转到登录页面
-	 * @return
-	 */
-	@RequestMapping(value="/adminlogin")
-	public ModelAndView adminLogin() {
-		ModelAndView mv = new ModelAndView();
-		mv.setViewName("/admin/login");
-		return mv;
-	}
-	
 	
 	/**
 	 * 

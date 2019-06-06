@@ -43,12 +43,10 @@ body{
 								data-toggle="dropdown" role="button" aria-haspopup="true"
 								aria-expanded="false">${user} <span class="caret"></span></a>
 								<ul class="dropdown-menu">
-									<li><a href="#">基本资料</a></li>
-									<li><a href="#">安全设置</a></li>
-									<li role="separator" class="divider"></li>
-									<li class="dropdown-header">Nav header</li>
-									<li><a href="#">注销</a></li>
-									<li><a href="#">退出管理控制台</a></li>
+									<li><a href="#" style="text-align: center;">基本资料</a></li>
+									<!-- <li role="separator" class="divider"></li> 分隔符 和 头部
+									<li class="dropdown-header" style="text-align: center;"></li> -->
+									<li><a href="${WEB_PATH}/logout" style="text-align: center;"> <span style="color: red" class="glyphicon glyphicon-off"></span> 退出管理控制台</a></li>
 								</ul></li>
 						</ul>
 						<form class="navbar-form navbar-right" action="${WEB_PATH}/main" method="post">
@@ -75,15 +73,16 @@ body{
 				<div class="col-sm-2">
 
 				<div class="list-group">
+					<a href="views/admin/welcomeAdmin.jsp" class="list-group-item" target="ifd"> 首页 </a> 
 					<a href="${WEB_PATH}/getCatgory" class="list-group-item" target="ifd"> 查看分类 </a> 
 					<a href="views/catgory/addCatgory.jsp" target="ifd" class="list-group-item"> 添加分类 </a>
-					<a href="#" class="list-group-item"> 查看图书 </a> 
-					<a href="views/addUser.jsp" target="ifd" class="list-group-item"> 添加图书 </a> 
-					<a href="#"class="list-group-item"> 所有订单</a>
-					<a href="#" class="list-group-item"> 未付款订单 </a>
-					<a href="#" class="list-group-item"> 已付款订单 </a> 
-					<a href="#" class="list-group-item"> 未收货订单 </a> 
-					<a href="#"class="list-group-item"> 已完成订单 </a>
+					<a href="#" class="list-group-item" > 查看图书 </a> 
+					<a href="${WEB_PATH}/initAddBook" target="ifd" class="list-group-item"> 添加图书 </a> 
+					<a href="${ WEB_PATH }/main"class="list-group-item" target="ifd"> 所有订单</a>
+					<a href="#" class="list-group-item" > 未付款订单 </a>
+					<a href="#" class="list-group-item" > 已付款订单 </a> 
+					<a href="#" class="list-group-item" > 未收货订单 </a> 
+					<a href="#"class="list-group-item"  > 已完成订单 </a>
 				</div>
 
 
@@ -178,7 +177,7 @@ body{
 					<div class="panel-body">
 					</div>
 					</div> -->
-						<iframe src="${ WEB_PATH }/main" id="frame1" scrolling="no" frameborder="0" name="ifd" onload="this.height=ifd.document.body.scrollHeight"></iframe>
+						<iframe src="views/admin/welcomeAdmin.jsp" id="frame1" scrolling="no" frameborder="0" name="ifd" onload="this.height=ifd.document.body.scrollHeight"></iframe>
 				</div>
 			</div>
 		</div>
