@@ -7,6 +7,37 @@
 	</insert>
 
 	<select id="selectAllBook" resultMap="finAllBook">
-		select 
+		select * from book where isdel = 0
 	</select>
+	
+	<resultMap type="com.ssm.pojo.Book" id="finAllBook">
+		<id property="bid" column="bid"/>
+		<result property="bname" column="bname"/>
+		<result property="price" column="price"/>
+		<result property="author" column="author"/>
+		<result property="image" column="image"/>
+		<result property="cid" column="cid"/>
+		<association property="catgory" column="cid" select="com.ssm.mapper.CatgoryMapper.getOneCatgory"></association>
+	</resultMap>
+	
+	<select id="editBook" parameterType="String" resultMap="finAllBook">
+		select * from book where bid = #{bid} and isdel = 0
+	</select>
+	
+	<update id="editBookSave">
+		update book set bname=#{bname},price =#{price},author=#{author},cid=#{cid} where bid = #{bid} and isdel = 0
+	</update>
+	
+	<update id="delBook">
+		update book set isdel = 1 where bid = #{bid}
+	</update>
+	
+	<select id="getOneCatgoryBook" parameterType="String" resultMap="finAllBook">
+		select * from book where cid = #{cid} and isdel = 0;
+	</select>
+	
+	<select id="bookDetails" parameterType="String" resultType="com.ssm.pojo.Book">
+		select * from book where bid = #{bid} ;
+	</select>
+	
 </mapper>

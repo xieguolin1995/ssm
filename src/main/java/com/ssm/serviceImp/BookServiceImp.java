@@ -23,5 +23,30 @@ public class BookServiceImp implements BookService {
 	public List<Book> selectAllBook() {
 		return mapper.selectAllBook();
 	}
+
+	@Override
+	public Book editBook(String bid) {
+		return mapper.editBook(bid);
+	}
+
+	@Override
+	public void editBookSave(Book book) {
+		mapper.editBookSave(book);
+	}
+
+	@Override
+	public void delBook(String bid) {
+		mapper.delBook(bid);
+	}
+
+	@Override
+	public List<Book> getOneCatgoryBook(String cid) {
+		return mapper.getOneCatgoryBook(cid);
+	}
+
+	@Override
+	public Book bookDetails(String bid) {
+		return mapper.bookDetails(bid);
+	}
 	
 }

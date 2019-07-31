@@ -16,6 +16,8 @@ public class Book {
 	private String author;
 	// 分类对象的主键
 	private String cid;
+	// 级联查询
+	private Catgory catgory;
 	// 图书的图片的地址
 	private String image;
 	// 逻辑删除（0代表未删除，1代表的删除）
@@ -44,12 +46,6 @@ public class Book {
 	public void setAuthor(String author) {
 		this.author = author;
 	}
-	public String getCid() {
-		return cid;
-	}
-	public void setCid(String cid) {
-		this.cid = cid;
-	}
 	public String getImage() {
 		return image;
 	}
@@ -62,11 +58,22 @@ public class Book {
 	public void setIsdel(int isdel) {
 		this.isdel = isdel;
 	}
+	public String getCid() {
+		return cid;
+	}
+	public void setCid(String cid) {
+		this.cid = cid;
+	}
+	public Catgory getCatgory() {
+		return catgory;
+	}
+	public void setCatgory(Catgory catgory) {
+		this.catgory = catgory;
+	}
 	@Override
 	public String toString() {
 		return "Book [bid=" + bid + ", bname=" + bname + ", price=" + price + ", author=" + author + ", cid=" + cid
-				+ ", image=" + image + ", isdel=" + isdel + "]";
+				+ ", catgory=" + catgory + ", image=" + image + ", isdel=" + isdel + "]";
 	}
-
 	
 }

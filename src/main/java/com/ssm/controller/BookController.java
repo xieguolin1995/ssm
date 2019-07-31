@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import com.ssm.pojo.Book;
 import com.ssm.pojo.Catgory;
@@ -25,6 +26,57 @@ public class BookController {
 	@Autowired
 	private CatgoryService cs;
 	
+	
+	@RequestMapping(value="/bookDetails",method=RequestMethod.GET)
+	public String bookDetails(@RequestParam ("bid") String bid,Model model) {
+		Book bookDetailsMsg = service.bookDetails(bid);
+		model.addAttribute("bookDetailsMsg", bookDetailsMsg);
+		return "/indexjsp/bookOrder/bookDetails";
+	}
+	
+	
+	/**
+	 * 2019年7月3日11:39:40
+	 * 后台删除 图书信息 实际逻辑删除 (数据库相应的列改为1)
+	 * @param bid
+	 * @return
+	 */
+	
+	@RequestMapping(value="/delBook",method=RequestMethod.GET)
+	public String delBook(@RequestParam(value="bid",required=true) String bid) {
+		service.delBook(bid);
+		System.out.println("删除成功 id为 :" +bid);
+		return "redirect:/findByBook";
+	}
+	
+	
+	/**
+	 *  2019年6月11日17:21:43 
+	 *  提交修改后的图书信息 (update)
+	 * @param book
+	 * @return
+	 */
+	@RequestMapping(value="/editBookSave",method=RequestMethod.POST)
+	public String editBookSave(Book book) {
+		service.editBookSave(book);
+		// 重定向
+		return "redirect:/findByBook";
+	}
+	
+	/**
+	 *	通过图书id更新图书  (选获取图书信息)
+	 * @param bid
+	 */
+	@RequestMapping(value="/editBook")
+	public String editBook(@RequestParam(value="bid",required=true) String bid,Model model) {
+		List<Catgory> cList = cs.getCatgory();
+		model.addAttribute("cList", cList);
+		Book book = service.editBook(bid);
+		model.addAttribute("editBook", book);
+		return "/book/editbook";
+	}
+	
+	
 	/**
 	 * 2019年5月31日11:46:20
 	 * @return 查询所有图书并显示在页面上
@@ -33,15 +85,13 @@ public class BookController {
 	public String findByBook(Model model) {
 		// 查询图书
 		List<Book> book = service.selectAllBook();
-		for (Book book2 : book) {
-			System.out.println(book2.toString());
-		}
+		model.addAttribute("book", book);
 		return "/book/allBook";
 	}
 	
 	
 	/**
-	 * 添加图书
+	 * 添加图书 / 上传图片
 	 * @param book
 	 * @throws IOException 
 	 */
@@ -70,13 +120,14 @@ public class BookController {
 			file.transferTo(new File(realPath+File.separator+imageName));
 			System.out.println("上传成功! 路径: "+  realPath+File.separator+imageName);
 			// 写到数据库的操作
-			book.setBid(IdUtils.MyUUIDUtils());
+			book.setBid(IdUtils.MyUUIDUtils());	
 			book.setIsdel(0);
 			book.setImage("book_image/"+imageName);
 			service.addBook(book);
 			System.out.println("上传完成!");
 			System.out.println(book.toString());
 		}
+		// 重定向
 		return "redirect:/findByBook";
 	}
 	

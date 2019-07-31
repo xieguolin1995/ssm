@@ -51,6 +51,11 @@ public class AdminController {
 		
 		return "/admin/login";
 	}
+	/**
+	 * 清除session 退出登录
+	 * @param session
+	 * @return
+	 */
 	@RequestMapping(value="/logout")
 	public String Logout(HttpSession session) {
 		// 清除session
@@ -58,4 +63,14 @@ public class AdminController {
 		// 重定向 到登录页面
 		return "/admin/login";
 	}
+	/**
+	 * 后台登录入口
+	 * @param session
+	 * @return
+	 */
+	@RequestMapping(value="/adminLogin.html")
+	public String adminLogin(HttpSession session) {
+		return "/admin/login";
+	}
+
 }

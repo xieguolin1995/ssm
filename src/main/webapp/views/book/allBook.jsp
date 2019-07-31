@@ -25,7 +25,23 @@ body{
 <body>
 	<div class="container-fluid">
 		<div class="row">
-			
+		  <c:forEach items="${book}" var="book">
+			<div class="col-sm-6 col-md-1">
+					 <img src="${pageContext.request.contextPath}/${book.image}" class="img-rounded"  width="120px" height="150px" alt="${book.bname}">
+					<div class="caption">
+						<p>
+							名称 : ${book.bname}<br>
+							价格: ${book.price}<br>
+							作者: ${book.author}<br>
+							分类: ${book.catgory.cname}
+						</p>
+						<p>
+							<a href="${WEB_PATH}/editBook?bid=${book.bid}" class="btn btn-info btn-sm" role="button">编辑</a>
+							<a href="${WEB_PATH}/delBook?bid=${book.bid}" class="btn btn-danger btn-sm" role="button">删除</a>
+						</p>
+					</div>
+			 </div>
+			</c:forEach>
 		</div>
 	</div>
 	

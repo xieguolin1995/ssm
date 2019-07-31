@@ -2,7 +2,6 @@ package com.ssm.controller;
 
 import java.util.List;
 
-import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,7 +9,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.ssm.pojo.Book;
 import com.ssm.pojo.Catgory;
+import com.ssm.service.BookService;
 import com.ssm.service.CatgoryService;
 
 /**
@@ -23,7 +24,48 @@ import com.ssm.service.CatgoryService;
 public class CatgoryContoller {
 	
 	@Autowired
+	private BookService bookService;
+	
+	@Autowired
 	private CatgoryService service;
+	
+	/**
+	 * 
+	 * @param cid 分类id
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping("/getOneCatgory")
+	public String getOneCatgoryBook(@RequestParam ("cid") String cid, Model model) {
+		List<Book> book = bookService.getOneCatgoryBook(cid);
+		model.addAttribute("bookList", book);
+		System.out.println(book.toString());
+		return "/indexjsp/list";
+	}
+	
+	/**
+	 * 前台页面 点击获取全部分类按钮后 查询 所有图书并回显给页面
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping("/getAllCatgoryFrontPage")
+	public String getAllCatgoryFrontPage(Model model) {
+		List<Book> book = bookService.selectAllBook();
+		model.addAttribute("bookList", book);
+		return "/indexjsp/list";
+	}
+	
+	
+	/**
+	 * 访问首页  (查询分类显示到首页)
+	 * @param model
+	 */
+	@RequestMapping(value="/getAllCatgory")
+	public String getAllCatgory(Model model) {
+		List<Catgory> list = service.getCatgory();
+		model.addAttribute("catgorylist", list);
+		return "/indexjsp/left";
+	}
 	
 	/**
 	 * @param cg 添加分类

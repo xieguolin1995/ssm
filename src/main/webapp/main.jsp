@@ -31,7 +31,7 @@ body{
 			<nav class="navbar navbar-inverse navbar-fixed-top">
 				<div class="container-fluid">
 					<div class="navbar-header">
-						<a class="navbar-brand" href="#"><span class="glyphicon glyphicon-send" style="color: aqua;"> </span> 小鱼图书商城后台管理</a>
+						<a class="navbar-brand" href="#"><span class="glyphicon glyphicon-send" style="color: aqua;"> </span> 小鱼爱读书网</a>
 						<a class="navbar-brand" href="#"><img id="favicon" alt="Brand" src="static/image/favicon.ico"></a>	
 						<span class="navbar-brand" id="cg"></span>
 					</div>
@@ -76,7 +76,7 @@ body{
 					<a href="views/admin/welcomeAdmin.jsp" class="list-group-item" target="ifd"> 首页 </a> 
 					<a href="${WEB_PATH}/getCatgory" class="list-group-item" target="ifd"> 查看分类 </a> 
 					<a href="views/catgory/addCatgory.jsp" target="ifd" class="list-group-item"> 添加分类 </a>
-					<a href="#" class="list-group-item" > 查看图书 </a> 
+					<a href="${WEB_PATH}/findByBook" target="ifd" class="list-group-item" > 查看图书 </a> 
 					<a href="${WEB_PATH}/initAddBook" target="ifd" class="list-group-item"> 添加图书 </a> 
 					<a href="${ WEB_PATH }/main"class="list-group-item" target="ifd"> 所有订单</a>
 					<a href="#" class="list-group-item" > 未付款订单 </a>

@@ -17,6 +17,6 @@ public class Catgory {
 	}
 	@Override
 	public String toString() {
-		return "Cagory [cid=" + cid + ", cname=" + cname + "]";
+		return "Catgory [cid=" + cid + ", cname=" + cname + "]";
 	}
 }
